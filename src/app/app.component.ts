@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,22 +10,40 @@ import { AuthService } from './shared/auth.service';
 import { AssignmentsService } from './shared/assignments.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, MatButtonModule, MatDividerModule,
             MatIconModule, MatSlideToggleModule,MatSidenavModule,
-            AssignmentsComponent,SidenavComponent],
+            AssignmentsComponent,SidenavComponent,CommonModule
+          ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'Application de gestion des assignments';
-
+  currentUrl = '';
+  isLoginPage = false;
   constructor(private authService:AuthService,
               private assignmentsService: AssignmentsService,
               private router:Router) {}
-
+  //bout de code tiré sur chat gpt pour avoir la valeur currentUrl
+  ngOnInit() {
+    this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.currentUrl = this.router.url;//-fin 
+      console.log('Current URL:', this.currentUrl);
+      if(this.currentUrl=="/login"){ 
+        this.isLoginPage = true;
+      }else{
+        this.isLoginPage = false
+      }
+    });
+  }
+  
   login() {
     // on utilise le service d'autentification
     // pour se connecter ou se déconnecter

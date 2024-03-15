@@ -1,0 +1,32 @@
+<form [formGroup]="loginForm" (submit)="onSubmit()">
+    <div>
+       <!--<label for="pseudo">Pseudo</label>--> 
+        <mat-form-field>
+            <input 
+            matInput
+            placeholder="pseudo"
+            required
+            id="pseudo" type="text" 
+            formControlName="pseudo"/>
+        </mat-form-field>
+    </div>
+    <div>
+     <!--<label for="mdp">Mot De Passe</label>-->   
+        <mat-form-field>
+            <input 
+            matInput
+            placeholder="Mot de Passe"
+            required
+            id="mdp" type="password" 
+            formControlName="mdp"/>
+        </mat-form-field>
+    </div>
+    
+    <button 
+    mat-stroked-button
+    color="primary" 
+    type="submit" class="primary"
+    [disabled]="loginForm.value.pseudo == '' || loginForm.value.mdp ==''">
+        Se Connecter
+    </button>
+</form>

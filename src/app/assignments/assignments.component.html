@@ -1,4 +1,4 @@
-<div class="container">
+<div  class="container">
   <div class="btnAjout">
     <a routerLink="/add">
       <button mat-flat-button color="accent">Ajouter Assignment</button>
@@ -139,26 +139,6 @@
     }
   </mat-list>
 </div>
+<!--may ajout future-->
+<!--<app-login *ngIf="!isLogged"></app-login>-->
 
-<!--
-<p>Avec Angular supérieur à la version 17</p>
-<table>
-  <tbody>
-    @for (a of assignments; track a.titre) {
-      <div [ngStyle]="{'color':getColor(a)}">
-      @if(a.rendu) {
-        <tr>
-          <td>{{ a.titre }}</td>
-          <td>{{ a.dateDeRendu|date }}</td>
-          <td>{{ a.rendu }}</td>
-        </tr>
-      } @else {
-        <tr>
-          <td>{{ a.titre }} NON RENDU !!!!</td>
-        </tr>
-      }
-    </div>
-    }
-  </tbody>
-</table>
--->

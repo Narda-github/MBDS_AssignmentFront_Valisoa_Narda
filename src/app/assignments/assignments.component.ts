@@ -20,6 +20,7 @@ import { AddAssignmentComponent } from './add-assignment/add-assignment.componen
 import { AssignmentsService } from '../shared/assignments.service';
 import { RouterLink } from '@angular/router';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs/operators';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-assignments',
   standalone: true,
@@ -41,9 +42,12 @@ import { filter, map, pairwise, tap, throttleTime } from 'rxjs/operators';
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
+    LoginComponent
   ],
 })
 export class AssignmentsComponent implements OnInit {
+  //pour simple check pour test (a enlever pour apres integration total)
+  isLogged = false;
   titre = 'Liste des assignments';
   // Pour la pagination
   page = 1;
@@ -54,7 +58,7 @@ export class AssignmentsComponent implements OnInit {
   prevPage!: number;
   hasNextPage!: boolean;
   hasPrevPage!: boolean;
-
+  
   // tableau des assignments POUR AFFICHAGE
   displayedColumns: string[] = ['nom', 'dateDeRendu', 'rendu'];
 

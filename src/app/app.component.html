@@ -1,15 +1,18 @@
-<h1>
-  <nav>
-    <a routerLink="/home">{{title}}</a>
-  </nav>
-</h1>
-<mat-slide-toggle (click)="login()" color="primary">Login</mat-slide-toggle>
-<button mat-button (click)="genererDonneesDeTest()">Peupler BD</button>
-<body>
-  <app-sidenav [page_title]="title"></app-sidenav>
-</body>
+<ng-container *ngIf="!isLoginPage">
+  <h1>
+    <nav>
+      <a routerLink="/home">{{title}}</a>
+    </nav>
+  </h1>
+  <mat-slide-toggle (click)="login()" color="primary">Login</mat-slide-toggle>
+  <button mat-button (click)="genererDonneesDeTest()">Peupler BD</button>
+  <app-sidenav  [page_title]="title"></app-sidenav>
+</ng-container>
 
+
+<router-outlet *ngIf="isLoginPage"></router-outlet>
 <!--
+  <router-outlet *ngIf="!isLogged"></router-outlet>
 <app-assignments></app-assignments>
 -->
 
